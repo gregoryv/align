@@ -106,15 +106,19 @@ func (result *Result) PrintOrigins(w io.Writer) {
 }
 
 func (result *Result) printMatrix(read valueReader, w io.Writer) {
+	// sequence a
 	fmt.Fprintf(w, "%4s", "")
 	for _, r := range result.a {
 		fmt.Fprintf(w, "%3v", string(r))
 	}
 	fmt.Fprint(w, "\n ")
-	for y, row := range result.f {
-		if y > 0 {
-			fmt.Fprintf(w, "%v", string(result.b[y-1]))
-		}
+	// First row
+	for x := 0; x < len(result.f[0]); x++ {
+		fmt.Fprintf(w, "%3v", read(result.f[0][x]))
+	}
+	fmt.Fprint(w, "\n")
+	for y, row := range result.f[1:] {
+		fmt.Fprintf(w, "%s", string(result.b[y])) // sequence b
 		for x := 0; x < len(row); x++ {
 			fmt.Fprintf(w, "%3v", read(row[x]))
 		}
