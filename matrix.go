@@ -1,7 +1,5 @@
 package align
 
-import "math"
-
 // cell is part of the matrix containing score calculations
 type cell struct {
 	top, left, diag, max, origin int
@@ -14,11 +12,8 @@ const (
 )
 
 func newCell(top, left, diag int) cell {
-	c := cell{top, left, diag, math.MinInt32, 0}
-	// Set max
-	if top > c.max {
-		c.max = top
-	}
+	// Note, using top as max
+	c := cell{top, left, diag, top, 0}
 	if left > c.max {
 		c.max = left
 	}
