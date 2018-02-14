@@ -110,12 +110,10 @@ func (result *Result) printMatrix(read valueReader, w io.Writer) {
 	for _, r := range result.a {
 		fmt.Fprintf(w, "%3v", string(r))
 	}
-	fmt.Fprint(w, "\n")
+	fmt.Fprint(w, "\n ")
 	for y, row := range result.f {
 		if y > 0 {
 			fmt.Fprintf(w, "%v", string(result.b[y-1]))
-		} else {
-			fmt.Fprint(w, " ")
 		}
 		for x := 0; x < len(row); x++ {
 			fmt.Fprintf(w, "%3v", read(row[x]))
