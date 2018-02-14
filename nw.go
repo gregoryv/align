@@ -1,5 +1,4 @@
 // package align implements NeedlemanWunsch pairwise alignment
-// https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
 package align
 
 type comparable interface {
