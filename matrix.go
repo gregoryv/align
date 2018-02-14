@@ -14,13 +14,7 @@ const (
 )
 
 func newCell(top, left, diag int) cell {
-	c := cell{
-		top:    top,
-		left:   left,
-		diag:   diag,
-		max:    math.MinInt32,
-		origin: 0,
-	}
+	c := cell{top, left, diag, math.MinInt32, 0}
 	// Set max
 	if top > c.max {
 		c.max = top
@@ -41,7 +35,6 @@ func newCell(top, left, diag int) cell {
 	if diag == c.max {
 		c.origin |= (1 << diagOrigin)
 	}
-
 	return c
 }
 
