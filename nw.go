@@ -15,21 +15,18 @@ func NeedlemanWunsch(a, b sequence) *Result {
 func NeedlemanWunschCustom(a, b sequence, match, miss, indel int) *Result {
 	F := newMatrix(len(a)+1, len(b)+1, miss)
 	m := &Result{a: a, b: b, f: F}
-	for y := 1; y < len(F); y++ {
-		for x := 1; x < len(F[0]); x++ {
-			diag := F[y-1][x-1].max + miss
-			if m.equal(x-1, y-1) {
-				diag = F[y-1][x-1].max + match
-			}
-
-			c := newCell(
-				F[y-1][x].max+indel,
-				F[y][x-1].max+indel,
-				diag,
-			)
-			F[y][x] = c
+	nav := NewNavigator(1, 1, 1, 1, len(F[0])-1, len(F)-1)
+	for x, y, more := nav.Right(); more; x, y, more = nav.Right() {
+		diag := F[y-1][x-1].max + miss
+		if m.equal(x-1, y-1) {
+			diag = F[y-1][x-1].max + match
 		}
+		c := newCell(
+			F[y-1][x].max+indel,
+			F[y][x-1].max+indel,
+			diag,
+		)
+		F[y][x] = c
 	}
 	return m
-
 }
