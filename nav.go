@@ -10,47 +10,41 @@ func NewNavigator(x, y, xi, yi, xj, yj int) *Navigator {
 
 // Right returns next position to the right, if the end of a row is reached
 // following position starting at xi is returned.
-func (iter *Navigator) Right() (x, y int, more bool) {
-	x = iter.x
-	y = iter.y
-	if y > iter.yj {
-		return x, y, false
-	}
-	iter.x++
-	if iter.x > iter.xj {
+func (nav *Navigator) Right() (x, y int, more bool) {
+	nav.x++
+	if nav.x > nav.xj {
 		// next row
-		iter.y++
-		iter.x = iter.xi
+		nav.y++
+		nav.x = nav.xi
 	}
-	return x, y, true
+	if nav.y > nav.yj {
+		return nav.x, nav.y, false
+	}
+	return nav.x, nav.y, true
 }
 
-func (iter *Navigator) Up() (x, y int, more bool) {
-	x = iter.x
-	y = iter.y
-	if x < iter.xi {
-		return x, y, false
-	}
-	iter.y--
-	if iter.y < iter.yi {
+func (nav *Navigator) Up() (x, y int, more bool) {
+	nav.y--
+	if nav.y < nav.yi {
 		// previous column
-		iter.x--
-		iter.y = iter.yj
+		nav.x--
+		nav.y = nav.yj
 	}
-	return x, y, true
+	if nav.x < nav.xi {
+		return nav.x, nav.y, false
+	}
+	return nav.x, nav.y, true
 }
 
-func (iter *Navigator) Left() (x, y int, more bool) {
-	x = iter.x
-	y = iter.y
-	if y < iter.yi {
-		return x, y, false
-	}
-	iter.x--
-	if iter.x < iter.xi {
+func (nav *Navigator) Left() (x, y int, more bool) {
+	nav.x--
+	if nav.x < nav.xi {
 		// next row
-		iter.y--
-		iter.x = iter.xj
+		nav.y--
+		nav.x = nav.xj
 	}
-	return x, y, true
+	if nav.y < nav.yi {
+		return nav.x, nav.y, false
+	}
+	return nav.x, nav.y, true
 }

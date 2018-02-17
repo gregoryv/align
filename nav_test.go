@@ -10,7 +10,6 @@ func ExampleNavigator_Right() {
 		fmt.Printf("%v,%v\n", x, y)
 	}
 	// output:
-	// 0,0
 	// 1,0
 	// 2,0
 	// 0,1
@@ -27,7 +26,6 @@ func ExampleNavigator_Up() {
 		fmt.Printf("%v,%v\n", x, y)
 	}
 	// output:
-	// 1,1
 	// 1,0
 	// 0,1
 	// 0,0
@@ -39,7 +37,6 @@ func ExampleNavigator_Left() {
 		fmt.Printf("%v,%v\n", x, y)
 	}
 	// output:
-	// 1,1
 	// 0,1
 	// 1,0
 	// 0,0
