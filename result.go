@@ -88,6 +88,7 @@ func (result *Result) PrintAlignment(w io.Writer) {
 	}
 }
 
+// Alignments returns all possible alignments with max score
 func (result *Result) Alignments() []alignment {
 	x := len(result.f[0]) - 1
 	y := len(result.f) - 1
@@ -97,10 +98,14 @@ func (result *Result) Alignments() []alignment {
 
 type valueReader func(c cell) int
 
+// PrintScoreMatrix writes out the sequences and their calculated score as shown on wikipedia.
 func (result *Result) PrintScoreMatrix(w io.Writer) {
 	result.printMatrix(func(c cell) int { return c.max }, w)
 }
 
+// PrintOrigins writes out the score origins for each score.
+// 0 = None(top row and first column),  1 = Diagonal, 2 = Left and 4 = Top
+// Eg. 5 = diagonal or top
 func (result *Result) PrintOrigins(w io.Writer) {
 	result.printMatrix(func(c cell) int { return c.origin }, w)
 }
