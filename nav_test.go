@@ -32,3 +32,15 @@ func ExampleNavigator_Up() {
 	// 0,1
 	// 0,0
 }
+
+func ExampleNavigator_Left() {
+	nav := NewNavigator(1, 1, 0, 0, 1, 1)
+	for x, y, more := nav.Left(); more; x, y, more = nav.Left() {
+		fmt.Printf("%v,%v\n", x, y)
+	}
+	// output:
+	// 1,1
+	// 0,1
+	// 1,0
+	// 0,0
+}

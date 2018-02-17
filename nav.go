@@ -39,3 +39,18 @@ func (iter *Navigator) Up() (x, y int, more bool) {
 	}
 	return x, y, true
 }
+
+func (iter *Navigator) Left() (x, y int, more bool) {
+	x = iter.x
+	y = iter.y
+	if y < iter.yi {
+		return x, y, false
+	}
+	iter.x--
+	if iter.x < iter.xi {
+		// next row
+		iter.y--
+		iter.x = iter.xj
+	}
+	return x, y, true
+}
