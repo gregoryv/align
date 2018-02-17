@@ -18,21 +18,16 @@ func (s Sequence) reverse() {
 }
 
 type alignment struct {
-	a     Sequence
-	b     Sequence
-	score int
+	a Sequence
+	b Sequence
 }
 
 func (pair alignment) String() string {
 	return fmt.Sprintf("%s\n%s", string(pair.a), string(pair.b))
 }
 
-func (pair *alignment) Score() int {
-	return pair.score
-}
-
 func (pair alignment) copyAdd(A, B rune) alignment {
-	copy := alignment{score: pair.score}
+	copy := alignment{}
 	for i, _ := range pair.a {
 		copy.a = append(copy.a, pair.a[i])
 		copy.b = append(copy.b, pair.b[i])
@@ -54,7 +49,6 @@ func (m *Result) equal(i, j int) bool {
 
 func (result *Result) findAlignments(x, y int, pair alignment) (all []alignment) {
 	cell := result.f[y][x]
-	pair.score += cell.max
 	if cell.origin == 0 {
 		pair.a.reverse()
 		pair.b.reverse()
@@ -77,14 +71,11 @@ func (result *Result) findAlignments(x, y int, pair alignment) (all []alignment)
 	return all
 }
 
-// Score returns the score, ie. sum of all pairwise alignment scores
+// Score returns the score, ie. the max of the bottom right cell
 func (result *Result) MaxScore() (score int) {
-	for _, p := range result.Alignments() {
-		if p.Score() > score {
-			score = p.Score()
-		}
-	}
-	return
+	x := len(result.f[0]) - 1
+	y := len(result.f) - 1
+	return result.f[y][x].max
 }
 
 func hasBit(n int, pos uint) bool {
@@ -94,7 +85,7 @@ func hasBit(n int, pos uint) bool {
 
 func (result *Result) PrintAlignment(w io.Writer) {
 	for _, p := range result.Alignments() {
-		fmt.Fprintf(w, "%s\nScore: %v\n\n", p.String(), p.Score())
+		fmt.Fprintf(w, "%s\n\n", p.String())
 	}
 }
 

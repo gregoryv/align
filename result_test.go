@@ -17,15 +17,12 @@ func ExampleResult_PrintAlignment() {
 	// output:
 	// GCA-TGCU
 	// G-ATTACA
-	// Score: 4
 	//
 	// GCAT-GCU
 	// G-ATTACA
-	// Score: 6
 	//
 	// GCATG-CU
 	// G-ATTACA
-	// Score: 6
 }
 
 func ExampleResult_PrintScoreMatrix() {
@@ -81,12 +78,26 @@ func ExampleResult_PrintScoreMatrix_global() {
 }
 
 func TestResult_MaxScore(t *testing.T) {
-	a := []rune("GCATGCU")
-	b := []rune("GATTACA")
-	result := align.NeedlemanWunsch(a, b)
-	exp := 6
-	res := result.MaxScore()
-	if res != exp {
-		t.Errorf("Score() expected to return %v, got %v", exp, res)
+	cases := []struct {
+		a, b                    []rune
+		match, miss, indel, ext int
+		exp                     int
+	}{
+		{[]rune("GCATGCU"), []rune("GATTACA"), 1, -1, -1, -1, 0},
+		{[]rune("GCATGCU"), []rune("GATTACA"), 1, -1, -2, -1, -1},
+		{[]rune("GCCU"), []rune("GCTTCU"), 1, -1, -2, -1, 1},
+		{[]rune("GCTTCU"), []rune("GCCU"), 1, -1, -2, -1, 1},
+		{[]rune("AAA"), []rune("AAA"), 1, -1, -2, -1, 3},
+	}
+
+	for i, c := range cases {
+		result := align.NeedlemanWunschCustom(c.a, c.b, c.match, c.miss, c.indel, c.ext)
+		res := result.MaxScore()
+		if res != c.exp {
+			t.Errorf("%v. expected to return %v, got %v\n", i, c.exp, res)
+			result.PrintScoreMatrix(os.Stdout)
+			result.PrintOrigins(os.Stdout)
+			result.PrintAlignment(os.Stdout)
+		}
 	}
 }
