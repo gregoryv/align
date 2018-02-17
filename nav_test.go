@@ -32,12 +32,12 @@ func ExampleNavigator_Up() {
 }
 
 func ExampleNavigator_Left() {
-	nav := NewNavigator(1, 1, 0, 0, 1, 1)
+	nav := NewNavigator(2, 2, 1, 1, 2, 2)
 	for x, y, more := nav.Left(); more; x, y, more = nav.Left() {
 		fmt.Printf("%v,%v\n", x, y)
 	}
 	// output:
-	// 0,1
-	// 1,0
-	// 0,0
+	// 1,2
+	// 2,1
+	// 1,1
 }

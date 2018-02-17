@@ -17,12 +17,15 @@ func ExampleResult_PrintAlignment() {
 	// output:
 	// GCA-TGCU
 	// G-ATTACA
+	// Score: 4
 	//
 	// GCAT-GCU
 	// G-ATTACA
+	// Score: 6
 	//
 	// GCATG-CU
 	// G-ATTACA
+	// Score: 6
 }
 
 func ExampleResult_PrintScoreMatrix() {
@@ -77,12 +80,12 @@ func ExampleResult_PrintScoreMatrix_global() {
 	// T -3 -1 -1  0  2  1  0 -1
 }
 
-func TestScore(t *testing.T) {
+func TestResult_MaxScore(t *testing.T) {
 	a := []rune("GCATGCU")
 	b := []rune("GATTACA")
 	result := align.NeedlemanWunsch(a, b)
 	exp := 6
-	res := result.Score()
+	res := result.MaxScore()
 	if res != exp {
 		t.Errorf("Score() expected to return %v, got %v", exp, res)
 	}
