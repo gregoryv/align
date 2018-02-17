@@ -1,6 +1,8 @@
 // package align implements NeedlemanWunsch pairwise alignment
 package align
 
+import "github.com/gregoryv/position"
+
 type comparable interface {
 	equal(ai, bj int) bool
 }
@@ -17,7 +19,7 @@ func NeedlemanWunschCustom(a, b Sequence, match, miss, indel, ext int) *Result {
 	F := newMatrix(len(a)+1, len(b)+1, miss)
 	m := &Result{a: a, b: b, f: F}
 	// Note we start to the left of our first cell, Right() moves it to the first position
-	nav := NewNavigator(0, 1, 1, 1, len(F[0])-1, len(F)-1)
+	nav := position.NewXYNavigator(0, 1, 1, 1, len(F[0])-1, len(F)-1)
 	for x, y, more := nav.Right(); more; x, y, more = nav.Right() {
 		diag := F[y-1][x-1].max + miss
 		if m.equal(x-1, y-1) {
