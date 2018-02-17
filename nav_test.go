@@ -4,18 +4,11 @@ import (
 	"fmt"
 )
 
-func ExampleNavigator() {
-	x, y := 10, 5
-	ix := make([][]int, y)
-	for i := range ix {
-		ix[i] = make([]int, x)
-	}
-
+func ExampleNavigator_Right() {
 	nav := NewNavigator(0, 0, 0, 0, 2, 2)
 	for x, y, more := nav.Right(); more; x, y, more = nav.Right() {
 		fmt.Printf("%v,%v\n", x, y)
 	}
-
 	// output:
 	// 0,0
 	// 1,0
@@ -26,4 +19,16 @@ func ExampleNavigator() {
 	// 0,2
 	// 1,2
 	// 2,2
+}
+
+func ExampleNavigator_Up() {
+	nav := NewNavigator(1, 1, 0, 0, 1, 1)
+	for x, y, more := nav.Up(); more; x, y, more = nav.Up() {
+		fmt.Printf("%v,%v\n", x, y)
+	}
+	// output:
+	// 1,1
+	// 1,0
+	// 0,1
+	// 0,0
 }

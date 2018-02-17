@@ -81,7 +81,7 @@ func TestScore(t *testing.T) {
 	a := []rune("GCATGCU")
 	b := []rune("GATTACA")
 	result := align.NeedlemanWunsch(a, b)
-	exp := 0
+	exp := 6
 	res := result.Score()
 	if res != exp {
 		t.Errorf("Score() expected to return %v, got %v", exp, res)

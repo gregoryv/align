@@ -71,7 +71,7 @@ func (result *Result) findAlignments(x, y int, pair alignment) (all []alignment)
 	return all
 }
 
-//Score returns the score, ie. the bottom-right most cell max value
+// Score returns the score, ie. sum of all pairwise alignment scores
 func (result *Result) Score() int {
 	x, y := len(result.f[0])-1, len(result.f)-1
 	return result.f[y][x].max
