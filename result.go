@@ -9,17 +9,17 @@ const (
 	gap = '-'
 )
 
-type sequence []rune
+type Sequence []rune
 
-func (s sequence) reverse() {
+func (s Sequence) reverse() {
 	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
 		s[i], s[j] = s[j], s[i]
 	}
 }
 
 type alignment struct {
-	a sequence
-	b sequence
+	a Sequence
+	b Sequence
 }
 
 func (pair alignment) String() string {
@@ -38,8 +38,8 @@ func (pair alignment) copyAdd(A, B rune) alignment {
 }
 
 type Result struct {
-	a sequence
-	b sequence
+	a Sequence
+	b Sequence
 	f matrix
 }
 

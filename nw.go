@@ -6,13 +6,13 @@ type comparable interface {
 }
 
 // NeedlemanWunsch aligns sequences a and b with simple scores 1, -1 and -1
-func NeedlemanWunsch(a, b sequence) *Result {
+func NeedlemanWunsch(a, b Sequence) *Result {
 	return NeedlemanWunschCustom(a, b, 1, -1, -1)
 }
 
 // NeedlemanWunschCustom calculates the score matrix using custom scores match,
 // missmatch and insert/delete.
-func NeedlemanWunschCustom(a, b sequence, match, miss, indel int) *Result {
+func NeedlemanWunschCustom(a, b Sequence, match, miss, indel int) *Result {
 	F := newMatrix(len(a)+1, len(b)+1, miss)
 	m := &Result{a: a, b: b, f: F}
 	nav := NewNavigator(1, 1, 1, 1, len(F[0])-1, len(F)-1)
