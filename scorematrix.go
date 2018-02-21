@@ -33,27 +33,22 @@ func newCell(top, left, diag int) cell {
 	return c
 }
 
-type matrix [][]cell
+type scoreMatrix [][]cell
 
 // newMatrix returns a matrix with initialized first row and column using miss score.
 // lenA is columns, and lenB rows.
-func newMatrix(lenA, lenB, miss int) matrix {
-	g := make(matrix, lenB)
+func newScoreMatrix(lenA, lenB, miss int) scoreMatrix {
+	g := make(scoreMatrix, lenB)
 	for y := 0; y < lenB; y++ {
 		g[y] = make([]cell, lenA)
 	}
-
-	score := -1
+	// Fill first row
 	for x := 1; x < lenA; x++ {
-		g[0][x] = cell{max: score, origin: 0}
-		score += miss
+		g[0][x] = cell{max: x * miss, origin: 0}
 	}
-
-	score = -1
+	// Fill first column
 	for y := 1; y < lenB; y++ {
-		g[y][0] = cell{max: score, origin: 0}
-		score += miss
+		g[y][0] = cell{max: y * miss, origin: 0}
 	}
-
 	return g
 }

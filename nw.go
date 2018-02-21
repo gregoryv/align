@@ -18,7 +18,7 @@ func NeedlemanWunsch(a, b Sequence) *Result {
 // NeedlemanWunschCustom calculates the score matrix using custom scores match,
 // missmatch, insert/delete and extended gap. Sequences a and b must not be empty.
 func NeedlemanWunschCustom(a, b Sequence, match, miss, indel, ext int) *Result {
-	F := newMatrix(len(a)+1, len(b)+1, miss)
+	F := newScoreMatrix(len(a)+1, len(b)+1, miss)
 	m := &Result{a: a, b: b, f: F}
 	x, y := 1, 1
 	boundary := position.Rect{x, y, len(F[0]) - 1, len(F) - 1}

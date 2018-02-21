@@ -40,7 +40,7 @@ func (pair alignment) copyAdd(A, B rune) alignment {
 type Result struct {
 	a Sequence
 	b Sequence
-	f matrix
+	f scoreMatrix
 }
 
 func (m *Result) equal(i, j int) bool {
