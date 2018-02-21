@@ -6,18 +6,15 @@ import (
 )
 
 func TestNeedlemanWunsch(t *testing.T) {
-	empty := make([]rune, 0)
 	cases := []struct {
 		a, b []rune
 	}{
-		{empty, empty},
-		{[]rune("abc"), empty},
+		{[]rune("abc"), []rune("123")},
 	}
 	for i, c := range cases {
 		result := align.NeedlemanWunsch(c.a, c.b)
 		if result == nil {
-			t.Errorf("%v. expected a result got nil", i)
+			t.Errorf("%v. expected a result", i)
 		}
 	}
-
 }
