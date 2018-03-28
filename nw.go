@@ -1,4 +1,12 @@
-// package align implements NeedlemanWunsch pairwise alignment
+/*
+Package align implements NeedlemanWunsch pairwise alignment.
+
+This implementation of the Needleman and Wunsch alignment algorithm
+aims to be accurate and easy to understand. It's goal is Not to be the
+fastest, though it's quite fast.
+
+https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
+*/
 package align
 
 import (
