@@ -8,5 +8,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.1.0] 2018-03-28
 
-- NeedlemanWunsch algorithm for with score calculation
+- NeedlemanWunsch algorithm with score calculation
 - Visualize alignment results
