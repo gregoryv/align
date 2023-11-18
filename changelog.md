@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Add func Compare for fuzzy like matching
 - Add webapp, basic web user interface
 
 ## [0.1.0] 2018-03-28

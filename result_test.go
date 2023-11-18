@@ -4,9 +4,10 @@ package align_test
 // https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
 
 import (
-	"github.com/gregoryv/align"
 	"os"
 	"testing"
+
+	"github.com/gregoryv/align"
 )
 
 func ExampleResult_PrintAlignment() {

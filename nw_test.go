@@ -1,8 +1,9 @@
 package align_test
 
 import (
-	"github.com/gregoryv/align"
 	"testing"
+
+	"github.com/gregoryv/align"
 )
 
 func TestNeedlemanWunsch(t *testing.T) {
