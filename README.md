@@ -5,3 +5,11 @@
 [align](https://godoc.org/github.com/gregoryv/align) - Implements Needleman and Wunsh alignment algorithm
 
 Detailed description is found at [wikipedia Needleman-Wunsch_algorithm](https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm)
+
+## Fuzzy match example
+
+    a := "GCATGCUAAAAAAA"
+    b := "GATTACAAAAAAAABBB"
+    if align.Compare(a, b) > 0.7 {
+        fmt.Println("similar enough")
+    }
